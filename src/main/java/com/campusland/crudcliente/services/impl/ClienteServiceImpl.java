@@ -63,4 +63,10 @@ public class ClienteServiceImpl implements ClienteService {
        
     }
 
+    @Override
+    @Transactional(readOnly = true)
+    public Cliente findByEmail(String email) {
+        return repositoryCliente.findByEmail(email);
+    }
+
 }

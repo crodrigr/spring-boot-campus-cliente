@@ -58,6 +58,25 @@ public class ClienteController {
 
     }
 
+    @GetMapping("/byEmail/{email}")
+    public ResponseEntity<Map<String,Object>> findAllById(@PathVariable String email) {
+
+         Map<String,Object> response=new HashMap<>();
+
+         Cliente cliente=clienteService.findByEmail(email);
+
+         if(cliente!=null){
+            response.put("cliente",cliente);
+            return new ResponseEntity<>(response,HttpStatus.OK);
+         }else{
+            response.put("mensaje",new String("No existe ningún cliente con ese id:"));
+            return new ResponseEntity<>(response,HttpStatus.NO_CONTENT);
+         }
+
+
+
+    }
+
     @PostMapping("/")
     public ResponseEntity<Map<String, Object>> save(@Valid @RequestBody Cliente cliente, BindingResult result) {
 

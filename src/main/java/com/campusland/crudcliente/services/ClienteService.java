@@ -18,6 +18,8 @@ public interface ClienteService {
 
     void delete(Long id);
 
+    Cliente findByEmail(String email);
+
 
 
     
