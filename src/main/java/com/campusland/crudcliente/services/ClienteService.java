@@ -14,6 +14,8 @@ public interface ClienteService {
 
     Cliente save(Cliente cliente);
 
+    Cliente update(Long id,Cliente cliente);
+
     void delete(Long id);
 
 

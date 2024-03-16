@@ -45,4 +45,22 @@ public class ClienteServiceImpl implements ClienteService {
         }       
     }
 
+    @Override
+    public Cliente update(Long id, Cliente cliente) {
+       Optional<Cliente> clienteCurrentOptional=repositoryCliente.findById(id);
+
+       if(clienteCurrentOptional.isPresent()){
+          Cliente clienteCurrent=clienteCurrentOptional.get();
+          clienteCurrent.setNombre(cliente.getNombre());
+          clienteCurrent.setApellido(cliente.getApellido());
+          clienteCurrent.setEmail(cliente.getEmail()); 
+          repositoryCliente.save(clienteCurrent);
+          return clienteCurrent;         
+       }
+
+       return null;
+       
+       
+    }
+
 }
