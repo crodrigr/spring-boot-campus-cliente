@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.campusland.crudcliente.repositories.RepositoryStudent;
 import com.campusland.crudcliente.repositories.entities.Student;
+import com.campusland.crudcliente.repositories.entities.Tuition;
 import com.campusland.crudcliente.services.StudentService;
 
 import jakarta.transaction.Transactional;
@@ -18,7 +19,13 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public Student save(Student student) {
-        
+
+        Tuition tuition=student.getTuition();
+        if(tuition!=null){
+            tuition.setStudent(student);
+        }
+
+              
         return repositoryStudent.save(student);
         
     }

@@ -1,5 +1,7 @@
 package com.campusland.crudcliente.repositories.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,6 +28,7 @@ public class Tuition {
 
     @JoinColumn(name = "student_id")
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @JsonIgnoreProperties("tuition")    
     private Student student;
 
 }    
