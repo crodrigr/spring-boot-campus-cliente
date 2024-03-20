@@ -7,7 +7,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.campusland.crudcliente.repositories.RepositoryCliente;
+import com.campusland.crudcliente.repositories.RepositoryFactura;
+import com.campusland.crudcliente.repositories.RepositoryProducto;
 import com.campusland.crudcliente.repositories.entities.Cliente;
+import com.campusland.crudcliente.repositories.entities.Factura;
+import com.campusland.crudcliente.repositories.entities.Producto;
 import com.campusland.crudcliente.services.ClienteService;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +21,8 @@ import lombok.AllArgsConstructor;
 public class ClienteServiceImpl implements ClienteService {
 
     private RepositoryCliente repositoryCliente;
+    private RepositoryProducto repositoryProducto;
+    private RepositoryFactura repositoryFactura;
 
     @Override
     @Transactional(readOnly = true)
@@ -67,6 +73,34 @@ public class ClienteServiceImpl implements ClienteService {
     @Transactional(readOnly = true)
     public Cliente findByEmail(String email) {
         return repositoryCliente.findByEmail(email);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Factura findFacturaById(Long id) {
+        return repositoryFactura.findById(id).orElse(null);        
+    }
+
+    @Override
+    public List<Factura> findFacturaAll() {
+        return (List<Factura>) repositoryFactura.findAll();
+        
+    }
+
+    @Override
+    public Factura saveFactura(Factura factura) {
+        return repositoryFactura.save(factura);
+      
+    }
+
+    @Override
+    public void deleteFacturaById(Long id) {
+          repositoryFactura.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> findProductoByNombre(String term) {
+          return repositoryProducto.findByNombre(term);
     }
 
 }
