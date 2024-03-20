@@ -1,5 +1,6 @@
 package com.campusland.crudcliente.repositories.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -12,12 +13,14 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="productos")
 @Data
 @AllArgsConstructor
-public class Producto {
+@NoArgsConstructor
+public class Producto implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
